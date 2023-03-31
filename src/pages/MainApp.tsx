@@ -9,7 +9,7 @@ const MainApp = (): JSX.Element =>
   {   
       event.preventDefault();
       console.log(event.target[0]?.value);
-      $("search-input-element").val(" ");
+      $(".search-input-element").val("");
   }
   return (
     <React.Fragment>
