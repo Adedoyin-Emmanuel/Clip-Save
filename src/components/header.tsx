@@ -1,11 +1,12 @@
 import React from "react";
 import Logo from "./../assets/images/logo.svg";
+import {navigateToApp, navigateToSupport} from "./../includes/scripts/customScript";
 
 const AppHeader = (): JSX.Element => {
   return (
     <React.Fragment>
       <nav
-        className="navbar navbar-expand-md  fixed-top "
+        className="navbar navbar-expand-md brand-bg-white-color fixed-top "
         aria-label="clip-save navbar"
       >
         <section className="container-fluid header-section ">
@@ -85,7 +86,12 @@ l28 53 0 352 c0 318 -2 355 -19 391 -23 51 -79 101 -128 114 -61 17 -698 14
           <div className="collapse navbar-collapse mx-3" id="navBarToggler">
             <ul className="navbar-nav me-auto mb-2 mb-sm-0">
               <li className="nav-item">
-                <a className="nav-link text-capitalize" aria-current="page" href="#">
+                <a
+                  className="nav-link text-capitalize"
+                  aria-current="page"
+                  href="#"
+                  onClick={navigateToApp}
+                >
                   Download
                 </a>
               </li>
@@ -95,7 +101,11 @@ l28 53 0 352 c0 318 -2 355 -19 391 -23 51 -79 101 -128 114 -61 17 -698 14
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-capitalize" href="#">
+                <a
+                  className="nav-link text-capitalize"
+                  href="#"
+                  onClick={navigateToSupport}
+                >
                   support
                 </a>
               </li>
