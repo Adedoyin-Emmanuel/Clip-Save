@@ -14,3 +14,49 @@
 *{
     font-family: poppins;
 }
+
+
+:root{
+    --brand-primary-color: #6E41E2;
+    --brand-white-color: #fff;
+    --brand-button-border-radius:20px;
+    --brand-small-text: 0.9rem;
+    --brand-small-text-2:0.8rem; 
+}
+
+
+
+/*app utility classes*/
+
+.brand-bg-primary-color
+{
+    background:var(--brand-primary-color);
+}
+
+.brand-text-primary-color
+{
+    color:var(--brand-primary-color);
+}
+
+.brand-bg-white-color
+{
+    background:var(--brand-white-color);
+}
+
+.brand-small-text
+{
+    font-size:var(--brand-small-text);
+}
+
+.brand-small-text-2
+{
+    font-size:var(--brand-small-text-2);
+}
+
+/*default bootstrap navbar properties @overide*/
+.navbar-toggler:focus {
+	text-decoration: none;
+	outline: 0;
+	box-shadow: none;
+}
+

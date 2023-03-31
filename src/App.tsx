@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import NotFound from './pages/404';
 import Support from './pages/Support';
 import MainApp from './pages/MainApp';
-
+import "./autoload";
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
