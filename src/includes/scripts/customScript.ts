@@ -16,6 +16,16 @@ export const navigateToSupport = (): void | null => {
   navigateTo("/app/support");
 };
 
+
+
+export const navigateToGithubProject = (): void | null => {
+  navigateTo("https://github.com/Adedoyin-Emmanuel/Clip-Save");
+};
+
+export const navigateToGithubProfile = (): void | null => {
+  navigateTo("https://github.com/Adedoyin-Emmanuel");
+};
+
 export const checkIfHomePageSeen = ():void | null =>
 {   
     //check localstorage if key exists

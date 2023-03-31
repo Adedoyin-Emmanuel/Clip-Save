@@ -98,7 +98,18 @@
 }
 
 
+.custom-input-button:hover, .custom-input-button:focus,.input-group  > .btn:hover
+{
+	background:var(--brand-primary-color);
+	transition: 0;
+}
 
+
+.search-input-element:focus, .search-input-element:active
+{
+	box-shadow:none;
+	border: var(--brand-button-outline-padding) solid var(--brand-primary-color);
+}
 
 
 
