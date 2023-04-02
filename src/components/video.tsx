@@ -2,11 +2,14 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import { faDotCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 interface videoProps {
   videoTitle: string;
   videoImageUrl: string;
   videoLikes: number;
+  videoDislikes:number;
+  videoRating:number;
   videoViews: number;
   commentCount: number;
 }
@@ -15,10 +18,12 @@ const VideoComponent = ({
   videoImageUrl,
   videoViews,
   videoLikes,
+  videoDislikes,
+  videoRating,
   commentCount,
 }: videoProps): JSX.Element => {
 
-const  formatVideoLikesOrView = (args: number): string => {
+const  formatVideoData = (args: number): string => {
   if (args >= 1000) {
    
     return `${Math.floor(args / 1000)}k`;
@@ -39,18 +44,18 @@ const  formatVideoLikesOrView = (args: number): string => {
           {videoTitle}
           <section className="video-views">
             <p className="brand-small-text-2 text-muted my-2">
-              {formatVideoLikesOrView(videoViews)} views
+              {formatVideoData(videoViews)} views
             </p>
           </section>
         </section>
-        <section className="video-stats d-flex  align-items-center justify-content-around justify-content-md-center">
+        <section className="video-stats d-flex  align-items-center justify-content-between justify-content-md-center">
           <section className="video-likes brand-small-text-2 mx-md-3">
             <FontAwesomeIcon
               icon={faThumbsUp}
               className="mx-2"
               color="#6E41E2"
             />
-            {formatVideoLikesOrView(videoLikes)}
+            {formatVideoData(videoLikes)}
           </section>
           <section className="video-dislikes brand-small-text-2 mx-md-3">
             <FontAwesomeIcon
@@ -58,16 +63,25 @@ const  formatVideoLikesOrView = (args: number): string => {
               className="mx-2 dislike-icon"
               color="#6E41E2"
             />
-            221k
+            {formatVideoData(videoDislikes)}
           </section>
 
           <section className="video-dislikes brand-small-text-2 mx-md-3">
             <FontAwesomeIcon
-              icon={faDotCircle}
+              icon={faPen}
               className="mx-2 dislike-icon"
               color="#6E41E2"
             />
-            {formatVideoLikesOrView(commentCount)}
+            {formatVideoData(commentCount)}
+          </section>
+
+          <section className="video-dislikes brand-small-text-2 mx-md-3">
+            <FontAwesomeIcon
+              icon={faStar}
+              className="mx-2 dislike-icon"
+              color="#6E41E2"
+            />
+            {Math.floor(videoRating)}
           </section>
         </section>
       </section>

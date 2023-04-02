@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import AppHeader from "../components/header";
 import AppInput from "../components/input";
 import VideoComponent from "../components/video";
-import { getYoutubeVideo } from "./../apis/youtubeAPI";
+import {
+  getYoutubeVideo,
+  getYoutubeVideoDislikes,
+  downloadVideo,
+} from "./../apis/youtubeAPI";
 import $, { data } from "jquery";
 import Button from "../components/button";
 
@@ -14,27 +18,19 @@ const MainApp = (): JSX.Element => {
   const [channelTitle, setChannelTitle] = useState<string>("");
   const [videoTitle, setvideoTitle] = useState<string>("");
   const [videoImage, setVideoImage] = useState<string>("");
-  const [commentCount, setcommentCount] = useState<string>("");
   const [relatedVideoData, setRelatedVideoData] = useState();
+  const [dislikesData, setDislikesData] = useState<any>("");
 
   const handleSubmit = (event: SubmitEvent): void => {
     event.preventDefault();
     const videoId = `${event.target[0].value}`;
 
-    // const fetchData = async () => {
-    //   try {
-    //     const dataReturned = await getYoutubeVideo(videoId);
-    //     setDataGotten(true);
-    //     setVideoData(dataReturned);
-    //   } catch (err: any) {
-    //     console.log(err);
-    //   }
-    // };
-
     const fetchData = async () => {
       const dataReturned = await getYoutubeVideo(videoId);
+      const youtubeDislikes = await getYoutubeVideoDislikes(videoId);
       setDataGotten(true);
       setVideoData(dataReturned);
+      setDislikesData(youtubeDislikes);
     };
     fetchData();
     //console.log(videoData);
@@ -47,6 +43,7 @@ const MainApp = (): JSX.Element => {
       setVideoStats(videoData.items[0].statistics);
       setChannelTitle(videoData.items[0].snippet.channelTitle);
       setvideoTitle(videoData.items[0].snippet.title);
+      console.log(dislikesData);
       if (videoData.items[0].snippet.thumbnails.maxres !==   undefined) 
       {
         setVideoImage(videoData.items[0].snippet.thumbnails.maxres.url);
@@ -59,7 +56,10 @@ const MainApp = (): JSX.Element => {
       //console.log(channelTitle);
     }
   });
-
+  const handleDownload = ():void =>
+  {
+    downloadVideo();
+  }
   return (
     <React.Fragment>
       <section className="container-fluid p-0 m-0">
@@ -79,17 +79,21 @@ const MainApp = (): JSX.Element => {
               videoTitle={videoTitle}
               videoImageUrl={videoImage}
               videoViews={videoStats.viewCount}
+              videoDislikes={dislikesData.dislikes}
+              videoRating={dislikesData.rating}
               videoLikes={videoStats.likeCount}
               commentCount={videoStats.commentCount}
             />
           )}
         </section>
         <section className="button-container my-5 width-toggle-3 m-auto d-flex align-items-center justify-content-center ">
-          <Button
-            text="download"
-            className="text-light brand-button"
-            onClick={console.log("sfjgdkgh")}
-          />
+          {dataGotten && (
+            <Button
+              text="download"
+              className="text-light brand-button"
+              onClick={handleDownload}
+            />
+          )}
         </section>
         <section className="my-4 py-3"></section>
       </section>
