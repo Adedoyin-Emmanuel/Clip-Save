@@ -24,16 +24,16 @@ export const getYoutubeVideoDislikes = (videoId: string) => {
 };
 
 export const downloadVideo = async (): Promise<void> => {
-  const url = "https://www.youtube.com/watch?v=pID9yFm5_CE";
+  const id = "FzrNHSGYu5c";
 
-    const response = await fetch(`http://localhost:3001/download?url=${url}`);
-    const blob = await response.blob();
-    const downloadUrl = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = downloadUrl;
-    a.download = `${url}.mp4`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
+  const response = await fetch(`http://localhost:4000/download/${id}`);
+  console.log(response);
+  // const blob = await response.blob();
+  // const url = URL.createObjectURL(blob);
+  // const link = document.createElement("a");
+  // link.href = url;
+  // link.download = `video_${id}.mp4`;
+  // document.body.appendChild(link);
+  // link.click();
+  // document.body.removeChild(link);
 };
